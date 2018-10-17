@@ -99,8 +99,9 @@ the final step of executing code in `emacs-startup-hook'.")
        (setq dotspacemacs-themes (delq spacemacs--fallback-theme
                                        dotspacemacs-themes))
        (add-to-list 'dotspacemacs-themes spacemacs--fallback-theme)
-       (setq default-theme spacemacs--fallback-theme)
-       (load-theme spacemacs--fallback-theme t)))
+       (unless (not default-theme)
+           (load-theme spacemacs--fallback-theme t))
+       (setq default-theme spacemacs--fallback-theme)))
     ;; protect used themes from deletion as orphans
     (setq configuration-layer--protected-packages
           (append
